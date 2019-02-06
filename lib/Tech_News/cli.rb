@@ -3,22 +3,26 @@
 class TechNews::CLI
 
     def call
-        list_news
+        welcome
         menu
         goodbye
     end
 
-    def list_news
-        puts "Here's all the news fit to puts: "
+    def welcome
+        puts "Welcome to Tech News"
         #@news = TechNews::News.today
     end
 
+    def news_stories
+        puts "Lets take a quick look at everything"
+    end
+
+
     def menu
-        puts "Tech News"
         input = nil
         while input != "exit"
             puts "What would you like to read?"
-        input = gets.strip
+        input = gets.strip.downcase
         
         case input
         when "1"
@@ -28,9 +32,10 @@ class TechNews::CLI
         when "3"
             puts "Lets get a better look at whats going on with NVIDIA"
         when "4"
-            puts "Ain't nobody got time fu dat!"
-        else "list_news"
-            list_news
+            puts "Lets get a better look at whats going on with APPLE"
+        when "5"
+            puts "Here's whats popular at WCC TECH"
+        else news_stories
         end
     end
 end
