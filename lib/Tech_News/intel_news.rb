@@ -1,3 +1,7 @@
+require 'pry'
+require 'nokogiri'
+require 'open-uri'
+
 class TechNews::News
 
     attr_accessor :title, :icon, :url
@@ -20,7 +24,7 @@ end
 
 def self.scrape_intel
     doc = Nokogiri::HTML(open("https://newsroom.intel.com/"))
-
+binding.pry
     news = self.new
     news.icon = doc.search().strip
     news.title = doc.search().text.strip
