@@ -1,11 +1,12 @@
 class TechNews::News
+
     attr_accessor :title, :icon, :url
 
 def self.today
     self.scrape_news
 end
 
-self.scrape_news
+def self.scrape_news
 news = []
 
 news << self.scrape_intel
