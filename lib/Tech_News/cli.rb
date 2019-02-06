@@ -16,6 +16,7 @@ class TechNews::CLI
     def news_stories
         puts "Lets take a quick look at whats available"
         @news = TechNews::News.today
+        @news
     end
 end
 
@@ -39,7 +40,7 @@ end
             puts "Lets get a better look at whats going on with Microsoft"
         when "6"
             puts "Lere's whats popular at WCC TECH"    
-        else 
+        when "7"
             news_stories
         end
     end
