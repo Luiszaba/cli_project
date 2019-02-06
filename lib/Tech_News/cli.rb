@@ -1,4 +1,4 @@
-##CLI Controller
+#CLI Controller
 
 class TechNews::CLI
 
