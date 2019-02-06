@@ -13,11 +13,11 @@ What are we trying to achieve?
 - Intel
 - AMD
 - NVIDIA
+- WCCTech
 
 What attributes does a news object have?
 - Title:
 - Source:
 - Date:
 - URL:
-
 
