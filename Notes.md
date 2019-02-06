@@ -4,6 +4,7 @@ How do I want this to work?
 - Plan your gem
 - How do you want to structure your gem
 - Begin at the run file and work your way up
+# bin tech_news
 - Build the CLI interface through the run file
 - Bring your CLI interface to life
 - Program from the inside out
@@ -56,12 +57,22 @@ title2: /html/body/main/div[3]/section/article[2]/div[2]/h2/a,
 url: https://wccftech.com/
 icon: /html/body/main/div[3]/section/article[2]/div[1]/a/img
 
+Apple: 
 
+icon: //*[@id="ac-gn-firstfocus"]
+url: https://www.apple.com/newsroom/
 
+title: //*[@id="main"]/section[1]/div/div/ul/li[1]/a/div/div[2]/div/p[1]
+url:https://www.apple.com/newsroom/2019/02/apple-names-deirdre-obrien-senior-vice-president-of-retail-and-people/
+icon: //*[@id="main"]/section[1]/div/div/ul/li[1]/a/div/div[1]/div/div
+
+title: //*[@id="main"]/section[1]/div/div/ul/li[2]/a/div/div[2]/div/p
+url: https://www.apple.com/newsroom/2019/02/apple-marks-heart-month-in-february/
+icon: //*[@id="main"]/section[1]/div/div/ul/li[2]/a/div/div[1]/div/div
 
 
 What attributes does a news object have?
-- Title:
+- Title: name of 
 - Source:
 - Date:
 - URL:
