@@ -1,4 +1,5 @@
 class TechNews::Deal
+    attr_accessor :title, :date, :source
 
 def self.today
     #I should return a bunch of instances of news
