@@ -2,8 +2,10 @@ class TechNews::News
 
     attr_accessor :title, :icon, :url
 
+@@all = []
+
 def self.today
-    self.scrape_news
+    scrape_news
 end
 
 def self.scrape_news

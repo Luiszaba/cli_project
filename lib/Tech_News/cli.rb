@@ -14,8 +14,10 @@ class TechNews::CLI
     end
 
     def news_stories
-        puts "Lets take a quick look at everything"
+        puts "Lets take a quick look at whats available"
+        @news = TechNews::News.today
     end
+end
 
 
     def menu
@@ -33,12 +35,14 @@ class TechNews::CLI
             puts "Lets get a better look at whats going on with NVIDIA"
         when "4"
             puts "Lets get a better look at whats going on with APPLE"
-        when "5"
-            puts "Here's whats popular at WCC TECH"
-        else news_stories
+        when "5" 
+            puts "Lets get a better look at whats going on with Microsoft"
+        when "6"
+            puts "Lere's whats popular at WCC TECH"    
+        else 
+            news_stories
         end
     end
-end
 
 def goodbye
     puts "Return tomorrow for more Tech News"
