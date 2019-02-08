@@ -3,7 +3,7 @@ require 'open-uri'
 require 'pry'
 
 
-class TechNews
+class TechNews::CLI
 
     attr_accessor :icon, :title, :url, :date
 
