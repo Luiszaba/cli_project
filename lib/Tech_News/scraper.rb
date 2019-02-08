@@ -8,7 +8,7 @@ class Newsroom
 
     @@all = []
 
-def self.initiate
+def initialize
     arrange_scrape
     @@all << self
 end
@@ -28,14 +28,15 @@ def arrange_scrape
 
     doc.css(".container").each do |news|
     newsroom = news.css(".container").text
-    binding.pry
     scraper[newsroom.to_sym] = {
     :icon => doc.css("div a img").attribute('src').value,
     :title => doc.css("div.post-title").first.text.strip,
     :url => doc.css("div.post-title").first.text.strip,
     :date => doc.css(".post-timestamp").first.text.strip,
     }
-    puts newsroom
+end
+    newsroom
  end
 end
-end
+binding.pry
+
