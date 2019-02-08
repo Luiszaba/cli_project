@@ -3,14 +3,28 @@ require 'open-uri'
 require 'pry'
 
 
-class TechNews::CLI
+class TechNews::News
 
     attr_accessor :icon, :title, :url, :date
 
     @@all = []
 
+def initialize
+    today
+end
+
 def self.today
-    scrape_news
+    scrape_sources
+end
+
+def self.scrape_sources
+news = []
+news << scrape_intel
+news << scrape_amd
+news << scrape_apple
+news << scrape_wcctech
+news << scrape_microsoft
+news
 end
 
 def self.save
@@ -19,86 +33,62 @@ end
 
 def self.scrape_intel
     html = "https://newsroom.intel.com/"
-    doc = Nokogiri::HTML(open(html))
-    scraper = []
-    newsroom = doc.css(".container").text
-    
-    newsroom.each do |news|
-        scraper_intel << {
-            :icon => news.css("div a img").attribute('src').value,
-            :title => news.css("div.post-title").first.text.strip,
-            :url => news.css("div.post-title").first.text.strip,
-            :date => news.css(".post-timestamp").first.text.strip
-        }
-    end
-    scraper_intel
+    news = Nokogiri::HTML(open(html))
+
+    intel_news = self.new
+            intel_news.icon = news.css("div a img").attribute('src').value
+            intel_news.title = news.css("div.post-title").first.text.strip
+            intel_news.url = news.css("div.post-title").first.attr("href").strip
+            intel_news.date = news.css(".post-timestamp").first.text.strip
+    intel_news
 end
 
 def self.scrape_amd
     html = "https://www.amd.com/en/corporate/newsroom"
-    doc = Nokogiri::HTML(open(html))
-    scraper_amd = []
-    newsroom = doc.css(".view-content")
-    
-    newsroom.each do |news|
-        scraper_amd << {
-            :icon => news.css("div a img")[0].attribute('src').value,
-            :title => news.css("h4 a").text.strip,
-            :url => news.css("h4 a")[0].first,
-            :date => news.css("div time").first.text.strip
-        }
-    end 
-    scraper_amd
+    news = Nokogiri::HTML(open(html))
+
+    amd_news = self.new
+            amd_news.icon = news.css("div a img")[0].attribute('src').value
+            amd_news.title = news.css("h4 a").text.strip
+            amd_news.url = news.css("h4 a")[0].first.attr("href").strip
+            amd_news.date = news.css("div time").first.text.strip
+    amd_news
 end
 
 def self.scrape_apple
     html = "https://www.apple.com/newsroom/"
-    doc = Nokogiri::HTML(open(html))
-    scraper_apple = []
-    newsroom = doc.css(".content")
-    
-    newsroom.each do |news|
-        scraper_apple << {
-            :icon => news.css("div li a div")[3].attribute('class').value,
-            :title => news.css("p.tile-content-headline")[0].text.strip,
-            :url => news.css("main li a")[0].first,
-            :date => news.css("div time").first.text.strip
-        }
-    end
-    scraper_wcctech
+    news = Nokogiri::HTML(open(html))
+
+    apple_news = self.new
+            apple_news.icon = news.css("div li a div")[3].attribute('class').value
+            apple_news.title = news.css("p.tile-content-headline")[0].text.strip
+            apple_news.url = news.css("main li a")[0].first.attr("href").strip
+            apple_news.date = news.css("div time").first.text.strip
+    apple_news
 end
 
 def self.scrape_wcctech
     html = "https://wccftech.com/"
-    doc = Nokogiri::HTML(open(html))
-    scraper_wcctech = []
-    newsroom = doc.css(".clearfix")
+    news = Nokogiri::HTML(open(html))
 
-    newsroom.each do |news|
-        scraper_wcctech << {
-            :icon => news.css("h1 a img").attribute('src').value,
-            :title => news.css("h2").first.text.strip,
-            :url => news.css("main div a")[1].first,
-            :date => news.css("div.meta")[0].text.strip
-        }
-    end
-    scraper_wcctech
+    wcc_news = self.new
+            wcc_news.icon = news.css("h1 a img").attribute('src').value
+            wcc_news.title = news.css("h2").first.text.strip
+            wcc_news.url = news.css("main div a")[1].first.attr("href").strip
+            wcc_news.date = news.css("div.meta")[0].text.strip
+    wcc_news
+
 end
 
 def self.scrape_microsoft
     html = "https://news.microsoft.com/category/press-releases/"
-    doc = Nokogiri::HTML(open(html))
-    scraper_microsoft = []
-    newsroom = doc.css(".main-content")
+    news = Nokogiri::HTML(open(html))
 
-    newsroom.each do |news|
-        scraper_microsoft << {
-            :icon => news.css("a img").attribute('src').value,
-            :title => news.css("main article div a")[0].text.strip,
-            :url => news.css("main article div a")[0].first,
-            :date => news.css("main article div")[1].text.strip
-        }
-    end
-    scraper_microsoft
+    m$_news = self.new
+            m$_news.icon = news.css("a img").attribute('src').value
+            m$_news.title = news.css("main article div a")[0].text.strip
+            m$_news.url = news.css("main article div a")[0].first.attr("href").strip
+            m$_news.date = news.css("main article div")[1].text.strip
+    m$_news
 end
 end
