@@ -24,9 +24,9 @@ end
 def arrange_scrape
     html = "https://newsroom.intel.com/"
     scraper = {}
-    doc = Nokogiri::HTML(open(html))    
-
+    doc = Nokogiri::HTML(open(html))
     doc.css(".container").each do |news|
+        binding.pry
     newsroom = news.css(".container").text
     scraper[newsroom.to_sym] = {
     :icon => doc.css("div a img").attribute('src').value,
@@ -36,7 +36,6 @@ def arrange_scrape
     }
 end
     newsroom
+
  end
 end
-binding.pry
-
