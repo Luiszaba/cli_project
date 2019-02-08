@@ -1,6 +1,6 @@
 #CLI Controller
 
-class TechNews::CLI
+class CLI
 
     def call
         welcome
@@ -10,13 +10,16 @@ class TechNews::CLI
 
     def welcome
         puts "Welcome to Tech News"
-        #@news = TechNews::News.today
     end
 
     def news_stories
         puts "Lets take a quick look at whats available"
-        @news = TechNews::News.today
-        @news
+        puts "Type 1 for Intel"
+        puts "Type 2 for AMD"
+        puts "Type 3 for NVIDIA"
+        puts "Type 4 for APPLE"
+        puts "Type 5 for MICROSOFT"
+        puts "Type 6 for WCCTECH"
     end
 end
 
