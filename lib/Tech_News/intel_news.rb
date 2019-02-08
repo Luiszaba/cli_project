@@ -27,57 +27,87 @@ news
 end
 
 def self.scrape_intel
-    doc = Nokogiri::HTML(open("https://newsroom.intel.com/"))
-
-    doc.css().each do |news|
+    html = "https://newsroom.intel.com/"
+    doc = Nokogiri::HTML(open(html))
+    scraper = []
     newsroom = doc.css(".container").text
-
-    news[newsroom.to_sym] = {
-    news1 = self.new
-    news1.icon = doc.css("div a img").attribute('src').value
-    news1.title = doc.css("div.post-title").first.text.strip
-    news1.url = doc.css("div.post-title").first.text.strip
-    news1.date = doc.css(".post-timestamp").first.text
-    news1
+    
+    newsroom.each do |news|
+        scraper_intel << {
+    :icon => news.css("div a img").attribute('src').value,
+    :title => news.css("div.post-title").first.text.strip,
+    :url => news.css("div.post-title").first.text.strip,
+    :date => news.css(".post-timestamp").first.text.strip
+    }
+end
+scraper_intel
 end
 
-
 def self.scrape_amd
-    doc = Nokogiri::HTML(open("https://www.amd.com/en/corporate/newsroom"))
-    news2 = self.new
-    news2.icon = doc.css("div a img")[0].attribute('src').value
-    news2.title = doc.css("h4 a").text.strip
-    news2.url = doc.css("h4 a")[0].first)
-    news2.date = doc.css("div time").first.text.strip
+    html = "https://www.amd.com/en/corporate/newsroom"
+    doc = Nokogiri::HTML(open(html))
+    scraper_amd = []
+    newsroom = doc.css(".view-content")
+    
+    newsroom.each do |news|
+        scraper_amd << {
+    :icon => news.css("div a img")[0].attribute('src').value,
+    :title => news.css("h4 a").text.strip,
+    :url => news.css("h4 a")[0].first),
+    :date => news.css("div time").first.text.strip
+    }
+end
+scraper_amd
 end
 
 def self.scrape_apple
-    doc = Nokogiri::HTML(open("https://www.apple.com/newsroom/"))
-    news3 = self.new
-    news3.icon =  doc.css("div li a div")[3].attribute('class').value
-    news3.title = doc.css("p.tile-content-headline")[0].text.strip
-    news3.url = doc.css(doc.css("main li a")[0].first
-    news3.date = doc.css("div time").first.text.strip
-    news3
+    html = "https://www.apple.com/newsroom/"
+    doc = Nokogiri::HTML(open(html))
+    scraper_apple = []
+    newsroom = doc.css(".content")
+    
+    newsroom.each do |news|
+        scraper_apple << {
+    :icon =  news.css("div li a div")[3].attribute('class').value,
+    :title = news.css("p.tile-content-headline")[0].text.strip,
+    :url = news.css(doc.css("main li a")[0].first,
+    :date = news.css("div time").first.text.strip
+    }
+end
+scraper_wcctech
 end
 
 def self.scrape_wcctech
-    doc = Nokogiri::HTML(open("https://wccftech.com/"))
-    news4 = self.new
-    news4.icon = doc.css("h1 a img").attribute('src').value
-    news4.title = doc.css("h2").first.text.strip
-    news4.url = doc.css("main div a")[1].first
-    news4.date = doc.css("div.meta")[0].text.strip
-    news4
+    html = "https://wccftech.com/"
+    doc = Nokogiri::HTML(open(html))
+    scraper_wcctech = []
+    newsroom = doc.css(".clearfix")
+
+    newsroom.each do |news|
+        scraper_wcctech << {
+    :icon = news.css("h1 a img").attribute('src').value,
+    :title = news.css("h2").first.text.strip,
+    :url = news.css("main div a")[1].first,
+    :date = news.css("div.meta")[0].text.strip
+    }
+end
+scraper_wcctech
 end
 
 def self.scrape_microsoft
-    doc = Nokogiri::HTML(open("https://news.microsoft.com/category/press-releases/"))
-    news5 = self.new
-    news5.icon = doc.css("a img").attribute('src').value
-    news5.title = doc.css(doc.css("main article div a")[0].text.strip
-    news5.url = doc.css(doc.css("main article div a")[0].first
-    news5.date = doc.css(doc.css("main article div")[1].text.strip
-    news5
+    html = "https://news.microsoft.com/category/press-releases/"
+    doc = Nokogiri::HTML(open(html))
+    scraper_microsoft = []
+    newsroom = doc.css(".main-content")
+
+    newsroom.each do |news|
+        scraper_microsoft << {
+    :icon = news.css("a img").attribute('src').value,
+    :title = news.css(doc.css("main article div a")[0].text.strip,
+    :url = news.css(doc.css("main article div a")[0].first,
+    :date = news.css(doc.css("main article div")[1].text.strip
+    }
+end
+scraper_microsoft
 end
 end
