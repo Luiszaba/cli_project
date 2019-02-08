@@ -20,10 +20,6 @@ class TechNews::CLI
     end
 end
 
-# IDEA:  Can I find a way to get the icon/picture of the company logo at command
-# input "integer"
-# output [icon] ..... [company][title]
-
     def menu
         input = nil
         while input != "exit"
