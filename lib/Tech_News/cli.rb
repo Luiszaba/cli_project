@@ -2,23 +2,21 @@
 
 class TechNews::CLI
 
+attr_accessor :title, :icon, :url, :date
+attr_reader :intel_news, :amd_news, :m_news, :apple_news, :wcc_news
+
     def call
+        TechNews::Scraper.scrape_sources
+
+
         welcome
         menu
         goodbye
     end
 
     def welcome
-        puts "Welcome to Tech News"
+        puts "Welcome to Tech News Daily!"
     end
-
-    def news_stories
-        puts "Lets take a quick look at whats available"
-        @news = TechNews::Sources.today
-        @news.each.with_index(1) do |news, i|
-            puts "#{i} - #{title} - #{date}"
-    end
-end
 
     def menu
         input = nil
@@ -27,26 +25,29 @@ end
         input = gets.strip.downcase
 
         case input
-        when "1"
+
+        when input = "1"
             puts "Lets get a better look at what's going on over at Intel"
-            puts "#{icon} - #{title} - #{url} #{date}"
-        when "2"
+            puts TechNews::Sources.all[0].title
+        when input = "2"
             puts "Lets get a better look at whats going on with AMD"
-            puts "#{icon} - #{title} - #{url} #{date}"
-        when "3"
+            puts ""
+        when input = "3"
             puts "Lets get a better look at whats going on with NVIDIA"
-            puts "#{icon} - #{title} - #{url} #{date}"
-        when "4"
+            puts "}"
+        when input = "4"
             puts "Lets get a better look at whats going on with APPLE"
-            puts "#{icon} - #{title} - #{url} #{date}"
-        when "5" 
+            puts ""
+        when input = "5" 
             puts "Lets get a better look at whats going on with Microsoft"
-            puts "#{icon} - #{title} - #{url} #{date}"
-        when "6"
+            puts ""
+        when input = "6"
             puts "Lere's whats popular at WCC TECH"
-            puts "#{icon} - #{title} - #{url} #{date}"
-        when  "quit"
+            puts ""
+        when input = "quit"
             goodbye
+        when input = "help"
+            news_stories
         else
             error
         end
@@ -60,4 +61,14 @@ end
 def error
     puts "Look's like we hit a snag."
     news_stories
+end
+
+def news_stories
+    puts "Lets take a quick look at whats available:"
+    @news = TechNews::Sources.scrape_sources
+    @news.each.with_index(1) do |news, i|
+        puts "#{i}. #{news.title} #{news.date}"
+end
+end
+
 end
