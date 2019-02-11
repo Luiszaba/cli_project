@@ -11,7 +11,11 @@ class TechNews::Sources
     @@all = []
 
 def initialize
-
+@icon = icon
+@title = title
+@url = url
+@date = date
+@new = news
 end
 
 def self.all
