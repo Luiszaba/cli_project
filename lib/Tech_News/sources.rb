@@ -10,9 +10,12 @@ class TechNews::Sources
 
     @@all = []
 
-def initialize(title, date)
+def initialize(title, date, url, icon)
     @title = title
     @date = date
+    @url = url
+    @icon = icon
+    @@all << self
 end
 def self.all
     @@all
