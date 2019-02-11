@@ -13,7 +13,16 @@ How do I want this to work?
 # work from the cli to the program itself
 
 What are we trying to achieve?
-# Read yesterdays big tech news beginning with the most recent article
+# Read yesterdays big tech news beginning with the most recent article supplied by the company newsletter
+# Fix URL's...split(" , ")[0][1]
+
+
+
+
+
+
+
+Scraper paths
 
 - Intel 
 

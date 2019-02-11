@@ -2,13 +2,7 @@
 
 class TechNews::CLI
 
-attr_accessor :title, :icon, :url, :date
-attr_reader :intel_news, :amd_news, :m_news, :apple_news, :wcc_news
-
     def call
-        TechNews::Scraper.scrape_sources
-
-
         welcome
         menu
         goodbye
@@ -18,31 +12,48 @@ attr_reader :intel_news, :amd_news, :m_news, :apple_news, :wcc_news
         puts "Welcome to Tech News Daily!"
     end
 
+    def news_stories
+        puts "Lets take a quick look at whats available:"
+        @news = TechNews::Sources.scrape_sources
+        @news.each.with_index(1) do |news, i|
+            puts "#{i}. #{news.title} #{news.date}"
+    end
+end
+
     def menu
         input = nil
         puts "What would you like to read? If you don't know yet, type help"
         while input != "exit"
         input = gets.strip.downcase
 
-        case input
+        TechNews::Sources.scrape_sources
 
+
+        case input
         when input = "1"
             puts "Lets get a better look at what's going on over at Intel"
-            puts TechNews::Sources.all[0].title
+            puts ""
+            puts "- #{TechNews::Sources.all[0].title}"
+            puts ""
         when input = "2"
             puts "Lets get a better look at whats going on with AMD"
             puts ""
+            puts "- #{TechNews::Sources.all[1].title}"
+            puts ""
         when input = "3"
-            puts "Lets get a better look at whats going on with NVIDIA"
-            puts "}"
-        when input = "4"
             puts "Lets get a better look at whats going on with APPLE"
             puts ""
-        when input = "5" 
-            puts "Lets get a better look at whats going on with Microsoft"
+            puts "- #{TechNews::Sources.all[2].title}"
             puts ""
-        when input = "6"
-            puts "Lere's whats popular at WCC TECH"
+        when input = "4"
+            puts "Lets get a better look at whats going on with MICROSOFT"
+            puts ""
+            puts "- #{TechNews::Sources.all[3].title}"
+            puts ""
+        when input = "5" 
+            puts "Lets get a better look at whats going on with WCCTECH"
+            puts ""
+            puts "- #{TechNews::Sources.all[4].title}"
             puts ""
         when input = "quit"
             goodbye
@@ -54,21 +65,12 @@ attr_reader :intel_news, :amd_news, :m_news, :apple_news, :wcc_news
     end
 end
 
-def goodbye
-    puts "Return tomorrow for more Tech News"
-end
-
 def error
-    puts "Look's like we hit a snag."
-    news_stories
+    puts "Look's like we hit a snag. Let's try that again shall we?"
+    menu
 end
 
-def news_stories
-    puts "Lets take a quick look at whats available:"
-    @news = TechNews::Sources.scrape_sources
-    @news.each.with_index(1) do |news, i|
-        puts "#{i}. #{news.title} #{news.date}"
+def goodbye
+    puts "Return tomorrow for more Tech News!"
 end
-end
-
 end
