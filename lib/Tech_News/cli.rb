@@ -40,7 +40,7 @@ end
         input = nil
         puts "What would you like to read?"
         puts "You can type any number between 1-5 for the most recent newsletter"
-        puts "If you want to leave, press any number followed by a Yes or No confirmation."
+        puts "If you want to leave, press any number greater then 5 followed by "Y" for Yes or "N" for No."
         puts ""
         while input != "exit"
         input = gets.strip.downcase

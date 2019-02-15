@@ -17,11 +17,6 @@ What are we trying to achieve?
 # Fix URL's...split(" , ")[0][1]
 
 
-
-
-
-
-
 Scraper paths
 
 - Intel 
