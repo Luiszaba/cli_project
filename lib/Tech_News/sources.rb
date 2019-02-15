@@ -52,7 +52,7 @@ def self.scrape_intel
     intel_news
 end
 
-    #url link broken
+    #url link working
 
 def self.scrape_amd
     html = "https://www.amd.com/en/corporate/newsroom"
@@ -105,3 +105,5 @@ def self.scrape_microsoft
     m_news
 end
 end
+
+    #url link broken

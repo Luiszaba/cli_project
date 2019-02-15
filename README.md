@@ -2,7 +2,7 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Tech_News`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TechNews is a gem that will read and display the most recent news from that companys webpage.  Companies include Intel, AMD, APPLE, & WCCTECH. Type in 1 through 6 to retrieve the most recent newsletter headline from the top computer component manufacturers.  Type in Help to retrieve all headlines at once.
+TechNews is a gem that will read and display the most recent news from that companys webpage.  Companies include Intel, AMD, APPLE, & WCCTECH. Type in 1 through 5 to retrieve the most recent newsletter headline from the top computer component manufacturers.  Type in Help to retrieve all headlines at once.  To quit program type 'quit' followed by 'y' for Yes or 'n' for No. 
 
 ## Installation
 
@@ -22,13 +22,15 @@ Or install it yourself as:
 
 ## Usage
 
-To see a quick update of tech company newsletters
+To see a quick update of tech company newsletter headline
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+Future updates will include headline URL, Date, and Author.
 
 ## Contributing
 
