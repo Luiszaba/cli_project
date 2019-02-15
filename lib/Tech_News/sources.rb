@@ -50,10 +50,9 @@ def self.scrape_intel
         intel_news.url = news.css("div.post-title").first.attr("href")
         intel_news.date = news.css(".post-timestamp").first.text 
     intel_news
+end
 
     #url link broken
-
-end
 
 def self.scrape_amd
     html = "https://www.amd.com/en/corporate/newsroom"
@@ -66,7 +65,9 @@ def self.scrape_amd
     amd_news
 end
 
-def self.scrape_apple
+    #url link broken
+
+    def self.scrape_apple
     html = "https://www.apple.com/newsroom/"
     news = Nokogiri::HTML(open(html))
     apple_news = self.new
@@ -76,6 +77,8 @@ def self.scrape_apple
         apple_news.date = news.css("div time").first.text
     apple_news
 end
+
+    #url link broken
 
 def self.scrape_wcctech
     html = "https://wccftech.com/"
@@ -88,6 +91,8 @@ def self.scrape_wcctech
     wcc_news
 
 end
+
+    #url link broken
 
 def self.scrape_microsoft
     html = "https://news.microsoft.com/category/press-releases/"
